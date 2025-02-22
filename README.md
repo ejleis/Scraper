@@ -39,5 +39,14 @@ pip install -r requirements.txt
 
 ### 5. Run the Project
 ```sh
-python app.py  # Replace with your actual entry script
+python main.py
 ```
+
+## Executing API:
+### Run the following details on Postman to test
+#### 1. Enter URL: `http://localhost:8000/scrape`
+#### 2. On the body, enter the following JSON details:
+`{
+    "url": "<URL of the website you want to scrape>"
+}`
+#### 3. Execute "Send" on Postman
