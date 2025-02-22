@@ -28,8 +28,10 @@ def scrape(request: ScrapeRequest):
                 detail=f"Failed to fetch URL: {request.url}"
             )
         soup = BeautifulSoup(response.text, "html.parser")
-        h2_tags = [h2.get_text(strip=True) for h2 in soup.find_all("h2")]
-        return {"url": request.url, "h2": h2_tags}
+        headers = {}
+        for tag in ["h1", "h2", "h3", "h4", "h5", "h6"]:
+            headers[tag] = [element.get_text(strip=True) for element in soup.find_all(tag)]
+        return {"url": request.url, "headers": headers}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
